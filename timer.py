@@ -1,5 +1,5 @@
 from time import perf_counter
-from functools import wraps
+from functools import wraps,lru_cache
 
 def timer(func):
     @wraps(func)
@@ -13,6 +13,7 @@ def timer(func):
         return result
     return wrapper
 
+@lru_cache(maxsize=None)
 @timer
 def fib(n):
     if n < 2:
